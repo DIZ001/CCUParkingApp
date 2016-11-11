@@ -10,4 +10,5 @@ I AM JONBOT 2.0
 
 I added a ParkingLot.java file - Jonathan
 
-CHARLES (C.J.) HAS ADDED MARKERS TO THE MAP AT THE MAJOR LOTS, LIMITED THE ZOOM LEVEL, AND MERGED TO THE INDEX HTML (11/08/16 8:22 PM - 11/08/16 10:15 PM). MY PLANS FOR TOMORROW INCLUDE A GRAPHICAL OVERLAY OF SOME COLORFUL BLOBS TO REPRESENT THE LOTS. PROBABLY MEANS A TAD OF PHOTOSHOP WORK.  (NOT REALLY FEELING THE IMAGE THAT WE HAVE. SEEMS A LITTLE CLUSTERED TO TRY AND MERGE OVERTOP OF GOOGLE MAPS). ALSO, I WANT TO ADD SOME POP UP INFO WINDOWS, INSTEAD OF HAVING THE LAME "LOT XX" POP UP WHEN MOUSING OVER.  
+CHARLES (C.J.) (11/08/16 8:22 PM - 11/08/16 10:15 PM). 
+               (11/10/16 6:30 PM - 11/10/16 9:00 PM) --- Failed attempts to incorporate GPS navigation. Original plan was to have a button in the info window that says "get me here" and it would start navigation. Instead, trying to incorporate directions from current location to selected lot from the buttons below the map. Geolocation + GPS interaction is tough.
