@@ -20,7 +20,6 @@
 				</div>
 			</div>
 		</div>
-		
 		<div id="map" class="container">
 			<div class="media">
 				<!-- <img src="img/parking_map.png" class="media-object center-block" style="width:700px"> -->
@@ -30,13 +29,15 @@
 		<div id="btnBody" class="container">
 			<button type="button" class="btn btn-primary btn-lg" id="chkLots">Check Lots</button>		
 		<!--	<button type="button" class="btn btn-primary btn-lg" id="chkLotKK">Lot KK</button>	 -->
-			
+<button type="button" class="btn btn-primary btn-lg" id="dirTo" onClick="directionsHere()" style="float:right;">Get Directions</button>
+<select id="mode" class="btn btn-primary btn-lg" style="float:right;"><option value="DRIVING">Driving</option><option value="WALKING" >Walking</option></select>
+<select id="destinationLot" class="btn btn-primary btn-lg" style="float:right;"><option value="lotG">Lot G</option><option value="lotM" >Lot M</option><option value="lotAA" >Lot AA</option><option value="lotBB" >Lot BB</option><option value="lotDD" >Lot DD</option><option value="lotEE" >Lot EE</option><option value="lotGG" >Lot GG</option><option value="lotHH" >Lot HH</option><option value="lotKK" >Lot KK</option><option value="lotNN" >Lot NN</option><option value="lotQQ" >Lot QQ</option><option value="lotYY" >Lot YY</option><option value="DDD" >Lot DDD</option></select>
 			<div class="dropdown">
 				<button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-toggle="dropdown">Lots</button>
 				<ul class="dropdown-menu">
 					<li><a data-toggle="modal" href="#chkLotAA">Lot AA</a></li>
 					<li><a data-toggle="modal" href="#chkLotBB">Lot BB</a></li>
-					<li><a data-toggle="modal" href="#chkLotDD">Lot KK</a></li>
+					<li><a data-toggle="modal" href="#chkLotDD">Lot DD</a></li>
 					<li><a data-toggle="modal" href="#chkLotDDD">Lot DDD</a></li>
 					<li><a data-toggle="modal" href="#chkLotEE">Lot EE</a></li>
 					<li><a data-toggle="modal" href="#chkLotG">Lot G</a></li>

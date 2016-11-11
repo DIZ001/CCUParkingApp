@@ -4,29 +4,41 @@
       // locate you.
       function initMap() {
 
+        //For GPS functionality
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
         // some lot entrances are commented out due to not being used at this time.
-        var lotKK = {lat: 33.794404,lng: -79.007915};
-        // var lotKK2 = {lat: 33.791844,lng: -79.010199};
-        var lotQQ = {lat: 33.792231,lng:  -79.015520};
-        // var lotQQ2 = {lat: 33.792237,lng: -79.016255};
         var lotG = {lat: 33.793686,lng:  -79.009909};
-        var lotHH = {lat: 33.796874,lng:  -79.009464};
-        // var lotHH2 = {lat: 33.797620,lng:  -79.010206};
+        var lotM = {lat: 33.793648,lng: -79.012604};
+        var lotAA = {lat: 33.798344,lng:  -79.016367};
         var lotBB = {lat: 33.799678,lng:  -79.012966};
         var lotDD = {lat: 33.799320,lng:  -79.013819};
         // var lotEE2 = {lat:33.800034,lng:  -79.012431};
         var lotEE = {lat: 33.797983,lng:  -79.010578};
-        var lotAA = {lat: 33.798344,lng:  -79.016367};
-        // var lotAA2 = {lat: 33.799501,lng:  -79.016179};
         var lotGG = {lat: 33.796556, lng: -79.006727};
+        var lotHH = {lat: 33.796874,lng:  -79.009464};
+        var lotKK = {lat: 33.794404,lng: -79.007915};
+        var lotNN = {lat:33.791118 ,lng: -79.012559};
+        // var lotAA2 = {lat: 33.799501,lng:  -79.016179};
+        var lotQQ = {lat: 33.792231,lng:  -79.015520};
+        var lotYY = {lat: 33.786320,lng: -79.020229};
+        var lotDDD = {lat: 33.800601,lng: -78.998891};
+        // var lotKK2 = {lat: 33.791844,lng: -79.010199};
+ 
+        // var lotQQ2 = {lat: 33.792237,lng: -79.016255};
+        
+        
+        // var lotHH2 = {lat: 33.797620,lng:  -79.010206};
+        
 
         // var lotGG2 = {lat: 33.796096, lng: -79.007530};
         // var lotGG3 = {lat: 33.796808, lng: -79.008308};        
 
         // As we expand to more lots, more markers will open up
-        // var lotA = {lat: ,lng: };
-        // var lotA = {lat: ,lng: };
-        // var lotA = {lat: ,lng: };
+        
+        
+        
         // var lotA = {lat: ,lng: };
         // var lotA = {lat: ,lng: };
         // var lotA = {lat: ,lng: };
@@ -44,7 +56,8 @@
         //   new google.maps.LatLng(33.801691, -78.988061)
         //   );
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 33.7950, lng: -79.0117},
+
+
           // //prevents zooming with +/- buttons
           // zoomControl: false,
           // //prevents zooming by double-left-clicking
@@ -66,6 +79,10 @@
           //zoom with best view of campus parkinglots
           zoom: 16
         });
+
+        //display directions window
+        directionsDisplay.setMap(map);
+
         // Info window information
         var infoWindowArray = new Array();
         function clear(){
@@ -74,46 +91,76 @@
           }
           return;
         }
+        var spots = 500;
+        var totalSpots = 1000;
+        // info windows
         var gglotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot GG</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot GG</h2><br><p> '+spots+'/'+totalSpots+' capacity.</p>'
         });
         infoWindowArray.push(gglotinfo);
+        var dddlotinfo = new google.maps.InfoWindow({
+          content: '<h2>Lot DDD</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
+        });
+        infoWindowArray.push(dddlotinfo);
+
         var hhlotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot HH</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot HH</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(hhlotinfo);
+
         var eelotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot EE</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot EE</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(eelotinfo);
+
         var bblotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot BB</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot BB</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(bblotinfo);
+
         var ddlotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot DD</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot DD</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(ddlotinfo);
+
         var aalotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot AA</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot AA</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(aalotinfo);
+
         var kklotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot KK</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot KK</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(kklotinfo);
+
         var glotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot G</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot G</h2><br><p>  '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(glotinfo);
+
         var qqlotinfo = new google.maps.InfoWindow({
-          content: '<h2>Lot QQ</h2><br><p>Here is our database output for this lot.</p>'
+          content: '<h2>Lot QQ</h2><br><p>  '+spots+'/'+totalSpots+' capacity</p>'
         });
         infoWindowArray.push(qqlotinfo);
 
+        var mlotinfo = new google.maps.InfoWindow({
+          content: '<h2>Lot M</h2><br><p>  '+spots+'/'+totalSpots+' capacity</p>'
+        });
+        infoWindowArray.push(mlotinfo);
+
+        var yylotinfo = new google.maps.InfoWindow({
+          content: '<h2>Lot YY</h2><br><p> '+spots+'/'+totalSpots+' capacity</p>'
+        });
+        infoWindowArray.push(yylotinfo);
+
+        var nnlotinfo = new google.maps.InfoWindow({
+          content: '<h2>Lot NN</h2><br><p>  '+spots+'/'+totalSpots+' capacity</p>'
+        });
+        infoWindowArray.push(nnlotinfo);
         // making the markers
         // and adding their corresponding listeners
 
+        // Markers
         var markerGG = new google.maps.Marker({
           position: lotGG,
           map: map,
@@ -123,6 +170,49 @@
         markerGG.addListener('click', function(){
           clear();
           gglotinfo.open(map,markerGG);
+        });
+        var markerDDD = new google.maps.Marker({
+          position: lotDDD,
+          map: map,
+          icon: 'img/all_student_parking.png',
+          title: 'Lot DDD'
+        });
+        markerDDD.addListener('click', function(){
+          clear();
+          dddlotinfo.open(map,markerDDD);
+        });
+
+        var markerM = new google.maps.Marker({
+          position: lotM,
+          map: map,
+          icon: 'img/commuter_parking.png',
+          title: 'Lot M'
+        });
+        markerM.addListener('click', function(){
+          clear();
+          mlotinfo.open(map,markerM);
+        });
+
+        var markerYY = new google.maps.Marker({
+          position: lotYY,
+          map: map,
+          icon: 'img/all_student_parking.png',
+          title: 'Lot YY'
+        });
+        markerYY.addListener('click', function(){
+          clear();
+          yylotinfo.open(map,markerYY);
+        });
+
+        var markerNN = new google.maps.Marker({
+          position: lotNN,
+          map: map,
+          icon: 'img/res_parking.png',
+          title: 'Lot NN'
+        });
+        markerNN.addListener('click', function(){
+          clear();
+          nnlotinfo.open(map,markerNN);
         });
         // var markerGG2 = new google.maps.Marker({
         //   position: lotGG2,
@@ -278,11 +368,11 @@
         // Geolocation is what finds your current location. Must be approved in browser.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
+            var myPos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
-            map.setCenter(pos);
+            map.setCenter(myPos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -291,8 +381,25 @@
           handleLocationError(false, infoWindow, map.getCenter());
         }
       }
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
+      function directionsHere(){
+        var selectedMode = document.getElementById('mode').value;
+        var destination = document.getElementById('destinationLot').value;
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+          directionsService.route({
+          origin: document.getElementById('map').getCenter(),
+          destination: destinationLot,
+          travelMode: google.maps.TravelMode[selectedMode]
+        },function(response, status){
+          if(status=='OK'){
+            directionsDisplay.setDirections(response);
+          }else{
+            window.alert('Directions request failed due to ' +status);
+          }
+        });
+      }
+      function handleLocationError(browserHasGeolocation, infoWindow, myPos) {
+        infoWindow.setPosition(myPos);
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
