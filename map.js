@@ -389,7 +389,6 @@
         var selectedMode = document.getElementById('mode').value;        
         
         var destination = document.getElementById('destinationLot').value;
-        alert(map.center);
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
           directionsService.route({
