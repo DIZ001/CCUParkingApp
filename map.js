@@ -65,6 +65,8 @@
           // //prevents scrolling with mouse
           // scrollwheel: false,
           // //disable street view 
+          
+
           streetViewControl: false,
           minZoom:15,
           maxZoom:18,
@@ -79,7 +81,20 @@
           //zoom with best view of campus parkinglots
           zoom: 16
         });
-
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var myPos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            map.setCenter(myPos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
         //display directions window
         directionsDisplay.setMap(map);
 
@@ -366,29 +381,20 @@
         // });
         // Try HTML5 geolocation.
         // Geolocation is what finds your current location. Must be approved in browser.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var myPos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            map.setCenter(myPos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
+        
       }
       function directionsHere(){
-        var selectedMode = document.getElementById('mode').value;
+        var map = document.getElementById('map');
+
+        var selectedMode = document.getElementById('mode').value;        
+        
         var destination = document.getElementById('destinationLot').value;
+        alert(map.center);
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
           directionsService.route({
-          origin: document.getElementById('map').getCenter(),
-          destination: destinationLot,
+          origin: document.getElementById('map').center,
+          destination: destination,
           travelMode: google.maps.TravelMode[selectedMode]
         },function(response, status){
           if(status=='OK'){
