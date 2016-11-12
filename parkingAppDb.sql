@@ -13,12 +13,6 @@ status varchar(100),
 primary key(id)
 );
 
-insert into user (name, email, status) values ('John Smith', 'jsmith@gmail.com', 
-'faculty, handicap');
-insert into user (name, email, status) values ('Jane Smith', 'smithjane@gmail.com', 
-'commuter');
-insert into user (name, email, status) values ('John Doe', 'jdoe@gmail.com', 
-'resident');
 
 
 create table parkingLot (
@@ -29,12 +23,7 @@ vehiclesExited int not null,
 primary key(id)
 );
 
-insert into parkingLot (name, vehiclesEntered, vehiclesExited) values ('GG Lot', 23, 
-12);
-insert into parkingLot (name, vehiclesEntered, vehiclesExited) values ('Library Lot', 50, 
-30);
-insert into parkingLot (name, vehiclesEntered, vehiclesExited) values ('Baseball Stadium Lot', 3, 
-0);
+
 
 
 
