@@ -21,31 +21,44 @@
 		$sql = "USE $dbname";
 		$conn->exec($sql);
 		echo "Database created successfully<br>";
-		// sql to create table
 		
+		/*
+		* sql to create table user
+		* id can be a width up to 7, unique, not null, and automatically increments
+		* name can be a width up to 50 characters and can't be null
+		* email and status can be a width up to 100 characters and can't be null
+		*/
 		$sql = "CREATE TABLE IF NOT EXISTS user (
-		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		id INT(7) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		name varchar(50) NOT NULL,
 		email varchar(100) NOT NULL,
 		status varchar(100) NOT NULL)";
 		$conn->exec($sql);
-		$sql = "ALTER TABLE user AUTO_INCREMENT = 00001";
+		// sql to automatically set what the first user ID will be (with a width of 7)
+		$sql = "ALTER TABLE user AUTO_INCREMENT = 0000001";
 		$conn->exec($sql);
 		echo "Table user created successfully<br>";
 		
+		/*
+		* sql to create table parkingLot
+		* id can be a width up to 3, unique, not null, and automatically increments
+		* name can be a width up to 50 characters and not null
+		* vehiclesEntered and vehiclesExited can be a value up to 10^4, must be positive, and not null
+		*/
 		$sql = "CREATE TABLE IF NOT EXISTS parkingLot (
-		id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+		id INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		name varchar(50) NOT NULL,
-		vehiclesEntered INT(0) UNSIGNED NOT NULL,
-		vehiclesExited INT(0) UNSIGNED NOT NULL)";
+		vehiclesEntered INT(5) UNSIGNED NOT NULL,
+		vehiclesExited INT(5) UNSIGNED NOT NULL)";
 		$conn->exec($sql);
-		$sql = "ALTER TABLE parkingLot AUTO_INCREMENT = 90000";
+		// sql to automatically set what the first parking lot ID will be
+		$sql = "ALTER TABLE parkingLot AUTO_INCREMENT = 100";
 		$conn->exec($sql);
 		echo "Table parkingLot created successfully<br>";
 	} catch (PDOEception $e) {
 		echo $sql . "<br>" . $e->getMessage();
 	}
-	
+	// ends the connection to the database
 	$conn = null;
 	
 ?>
