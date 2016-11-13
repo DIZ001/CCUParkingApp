@@ -469,19 +469,21 @@
           if(startLot == lotArray[i].name){
             start = lotArray[i];
             foundStart = true;
-          }else if(destinationLot == lotArray[i].name){
+          }
+          if(destinationLot == lotArray[i].name){
             destination = lotArray[i]; 
             foundEnd = true;           
           }
         }
-        window.alert('start='+start);
-        window.alert('destination='+destination);
         // if(foundStart==false){
         //     window.alert('Could not find start');
         //   }
         //   if(foundEnd == false){
         //     window.alert('Could not find end');
         //   }
+        if(start==destination){
+          window.alert('Error: Make sure the starting lot and ending lot are different.');
+        }else{
         directionsService.route({
           origin: start,  // Lot G.
           destination: destination,  // Lot GG.
@@ -496,6 +498,7 @@
             window.alert('Directions request failed due to ' + status);
           }
         });
+      }
       }
       function handleLocationError(browserHasGeolocation, infoWindow, myPos) {
         infoWindow.setPosition(myPos);
