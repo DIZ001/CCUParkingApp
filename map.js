@@ -420,6 +420,24 @@
       }
 
 
+      // Legend
+
+      var icons = {
+        all: {name:'UP Commuter, Commuter, Resident, Veteran',icon: 'img/all_student_parking.png'
+      },commuter: {name:'UP Commuter, Commuter, Veteran',icon: 'img/commuter_parking.png'
+      },resident :{name: 'Resident',icon:'img/res_parking.png'
+      }
+    };
+
+    var legend = document.getElementById('legend');
+    for(var key in icons){
+      var type = icons[key];
+      var name = type.name;
+      var icon = type.icon;
+      var div = document.createElement('div');
+      div.innerHTML = '<img src="' +icon + '">' +name;
+      legend.appendChild(div);
+    }
 
       //failed attempt at GPS
       // function directionsHere(directionsService,directionsDisplay,lotArray,lotArraySize){

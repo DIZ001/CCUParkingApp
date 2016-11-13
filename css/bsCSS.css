@@ -63,8 +63,18 @@ body{
 	padding-bottom:30px;
 	padding-top:30px;
 }
-
-
+#legend {
+	font-family: Calibri, sans-serif;
+	background: #009999;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid #000;
+	color: #FFF;
+	
+}
+#legend img{
+	vertical-align: middle;
+}
 html,body{
     height: 100%
 }
