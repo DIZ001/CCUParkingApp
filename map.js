@@ -6,24 +6,41 @@
 
         //For GPS functionality
 
-        var directionsService = new google.maps.DirectionsService;
+        var directionsService = new google.maps.DirectionsService;        
         var directionsDisplay = new google.maps.DirectionsRenderer;
         // some lot entrances are commented out due to not being used at this time.
-        var lotG = {lat: 33.793686,lng:  -79.009909};
-        var lotM = {lat: 33.793648,lng: -79.012604};
-        var lotAA = {lat: 33.798344,lng:  -79.016367};
-        var lotBB = {lat: 33.799678,lng:  -79.012966};
-        var lotDD = {lat: 33.799320,lng:  -79.013819};
+
+        var lotArray = new Array();
+
+        var lotG = {name: 'lotG', lat: 33.793686,lng:  -79.009909};
+        lotArray.push(lotG);
+        var lotM = {name: 'lotM', lat: 33.793648,lng: -79.012604};
+        lotArray.push(lotM);
+        var lotAA = {name: 'lotAA', lat: 33.798344,lng:  -79.016367};
+        lotArray.push(lotAA);
+        var lotBB = {name: 'lotBB', lat: 33.799678,lng:  -79.012966};
+        lotArray.push(lotBB);
+        var lotDD = {name: 'lotDD', lat: 33.799320,lng:  -79.013819};
+        lotArray.push(lotDD);
         // var lotEE2 = {lat:33.800034,lng:  -79.012431};
-        var lotEE = {lat: 33.797983,lng:  -79.010578};
-        var lotGG = {lat: 33.796556, lng: -79.006727};
-        var lotHH = {lat: 33.796874,lng:  -79.009464};
-        var lotKK = {lat: 33.794404,lng: -79.007915};
-        var lotNN = {lat:33.791118 ,lng: -79.012559};
+        var lotEE = {name: 'lotEE', lat: 33.797983,lng:  -79.010578};
+        lotArray.push(lotEE);
+        var lotGG = {name: 'lotGG', lat: 33.796556, lng: -79.006727};
+        lotArray.push(lotGG);
+        var lotHH = {name: 'lotHH', lat: 33.796874,lng:  -79.009464};
+        lotArray.push(lotHH);
+        var lotKK = {name: 'lotKK', lat: 33.794404,lng: -79.007915};
+        lotArray.push(lotKK);
+        var lotNN = {name: 'lotNN', lat:33.791118 ,lng: -79.012559};
+        lotArray.push(lotNN);
         // var lotAA2 = {lat: 33.799501,lng:  -79.016179};
-        var lotQQ = {lat: 33.792231,lng:  -79.015520};
-        var lotYY = {lat: 33.786320,lng: -79.020229};
-        var lotDDD = {lat: 33.800601,lng: -78.998891};
+        var lotQQ = {name: 'lotQQ', lat: 33.792231,lng:  -79.015520};
+        lotArray.push(lotQQ);
+        var lotYY = {name: 'lotYY', lat: 33.786320,lng: -79.020229};
+        lotArray.push(lotYY);
+        var lotDDD = {name: 'lotDDD', lat: 33.800601,lng: -78.998891};
+        lotArray.push(lotDDD);
+        var lotArraySize = lotArray.length;
         // var lotKK2 = {lat: 33.791844,lng: -79.010199};
  
         // var lotQQ2 = {lat: 33.792237,lng: -79.016255};
@@ -79,36 +96,30 @@
           },
 
           //zoom with best view of campus parkinglots
-          zoom: 16
+          zoom: 14
         });
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var myPos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            map.setCenter(myPos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-        //display directions window
         directionsDisplay.setMap(map);
+        // calculateAndDisplayRoute(directionsService,directionsDisplay,lotArray);
+        // document.getElementById('mode').addEventListener('change',
+        //   function(lotArray){
+        //   calculateAndDisplayRoute(directionsService,directionsDisplay, lotArray);
+        // })
+        document.getElementById('getDirections').addEventListener('click',
+          function(){
+          calculateAndDisplayRoute(directionsService,directionsDisplay,lotArray,lotArraySize);
+        })
 
-        // Info window information
-        var infoWindowArray = new Array();
-        function clear(){
-          for (var i=0;i<infoWindowArray.length;i++){
-            infoWindowArray[i].close();
-          }
-          return;
-        }
+        // var onClickHandler = function(){
+        //   directionsHere(directionsService,directionsDisplay,lotArray);
+        // }
+        // document.getElementById('dirTo').addEventListener('click',function(){
+        //   directionsHere(directionsService,directionsDisplay,lotArray);
+        // });
+        
         var spots = 500;
         var totalSpots = 1000;
         // info windows
+        var infoWindowArray = new Array();
         var gglotinfo = new google.maps.InfoWindow({
           content: '<h2>Lot GG</h2><br><p> '+spots+'/'+totalSpots+' capacity.</p>'
         });
@@ -381,25 +392,108 @@
         // });
         // Try HTML5 geolocation.
         // Geolocation is what finds your current location. Must be approved in browser.
-        
-      }
-      function directionsHere(){
-        var map = document.getElementById('map');
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var myPos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            map.setCenter(myPos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+        //display directions window
+        // directionsDisplay.setMap(map);
 
-        var selectedMode = document.getElementById('mode').value;        
+        // Info window information
+        var infoWindowArray = new Array();
+        function clear(){
+          for (var i=0;i<infoWindowArray.length;i++){
+            infoWindowArray[i].close();
+          }
+          return;
+        }
+      }
+
+
+
+      //failed attempt at GPS
+      // function directionsHere(directionsService,directionsDisplay,lotArray,lotArraySize){
+      //   var selectedMode = document.getElementById('mode').value;       
+      //   var destination = document.getElementById('destinationLot').value;
+      //   var foundStart = false;
+      //   var foundEnd = false;
+        // for(i=0;i<lotArraySize;i++){
+        //   if(document.getElementById('startLot').value == lotArray[i].name){
+        //     var start = lotArray[i];
+        //     foundStart = true;
+        //   }else if(document.getElementById('destinationLot').value == lotArray[i].name){
+        //     var destination = lotArray[i]; 
+        //     foundEnd = true;           
+        //   }
+        //   if(foundStart==false){
+        //     window.alert('Could not find start');
+        //   }
+        //   if(foudnEnd == false){
+        //     window.alert('Could not find end');
+        //   }
+        // }
+
+      //     directionsService.route({
+      //     origin: start,
+      //     destination: destination,
+      //     travelMode: google.maps.TravelMode[selectedMode]
+      //   },function(response, status){
+      //     if(status=='OK'){
+      //       directionsDisplay.setDirections(response);
+      //     }else{
+      //       window.alert('Directions request failed due to ' +status);
+      //     }
+      //   });
+      // }
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, lotArray,lotArraySize) {
+        var selectedMode = document.getElementById('mode').value;
         
-        var destination = document.getElementById('destinationLot').value;
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
-          directionsService.route({
-          origin: document.getElementById('map').center,
-          destination: destination,
+        var startLot = document.getElementById('startLot').value;
+        var destinationLot = document.getElementById('destinationLot').value;
+        var foundStart = false;
+        var foundEnd = false;
+        var start;
+        var destination;
+
+        for(i=0;i<lotArraySize;i++){
+          if(startLot == lotArray[i].name){
+            start = lotArray[i];
+            foundStart = true;
+          }else if(destinationLot == lotArray[i].name){
+            destination = lotArray[i]; 
+            foundEnd = true;           
+          }
+        }
+        window.alert('start='+start);
+        window.alert('destination='+destination);
+        // if(foundStart==false){
+        //     window.alert('Could not find start');
+        //   }
+        //   if(foundEnd == false){
+        //     window.alert('Could not find end');
+        //   }
+        directionsService.route({
+          origin: start,  // Lot G.
+          destination: destination,  // Lot GG.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
           travelMode: google.maps.TravelMode[selectedMode]
-        },function(response, status){
-          if(status=='OK'){
+        }, function(response, status) {
+          if (status == 'OK') {
             directionsDisplay.setDirections(response);
-          }else{
-            window.alert('Directions request failed due to ' +status);
+          } else {
+            window.alert('Directions request failed due to ' + status);
           }
         });
       }
