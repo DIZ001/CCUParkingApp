@@ -2,7 +2,8 @@ body{
 	background-color:#e6e6e6;
 }
 #map{
-	height:70%;
+	height:60%;
+	width: 80%;
 }
 
 #formbody{
