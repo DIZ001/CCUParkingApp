@@ -410,7 +410,6 @@
         // directionsDisplay.setMap(map);
 
         // Info window information
-        var infoWindowArray = new Array();
         function clear(){
           for (var i=0;i<infoWindowArray.length;i++){
             infoWindowArray[i].close();
