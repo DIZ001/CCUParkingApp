@@ -76,9 +76,31 @@ body{
 #legend img{
 	vertical-align: middle;
 }
-html,body{
-    height: 100%
+
+
+/*
+#getDirections{
+	float:right;
 }
 
+#mode{
+	float:right;
+}
 
+#destinationLot{
+	float:right;
+}
 
+#startLot{
+	float:right;
+}
+
+*/
+
+.btn-group{
+	width:100%;
+}
+
+html,body{
+    height: 100%;
+}
