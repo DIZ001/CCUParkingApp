@@ -3,7 +3,13 @@ body{
 }
 #map{
 	height:60%;
-	width: 50%;
+	width: 70%;
+}
+
+@media only screen and (max-width: 768px){
+	#map{
+		width:100%;
+	}
 }
 
 #formbody{
