@@ -1,10 +1,11 @@
 <?php
-/*
-* parkingAppDB.php - creates a database for use by the parkingApp.
+/**
+* parkingAppDB.php - Creates a database for use by the parkingApp that contains tables "user" and "parkingLot".
 * @author Jonathan Winters
 * @date 13 November 2016
 * @version 1.0
-*/
+**/
+
 	$servername = "localhost";
 	$username = "parkingApp";
 	$password = "CCUpark1";
@@ -30,7 +31,8 @@
 		*/
 		$sql = "CREATE TABLE IF NOT EXISTS user (
 		id INT(7) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-		name varchar(50) NOT NULL,
+		firstName varchar(20) NOT NULL,
+		lastName varchar(20) NOT NULL,
 		email varchar(100) NOT NULL,
 		status varchar(100) NOT NULL)";
 		$conn->exec($sql);
@@ -55,7 +57,7 @@
 		$sql = "ALTER TABLE parkingLot AUTO_INCREMENT = 100";
 		$conn->exec($sql);
 		echo "Table parkingLot created successfully<br>";
-	} catch (PDOEception $e) {
+	} catch (PDOException $e) {
 		echo $sql . "<br>" . $e->getMessage();
 	}
 	// ends the connection to the database
