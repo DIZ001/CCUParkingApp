@@ -3,7 +3,13 @@ body{
 }
 #map{
 	height:60%;
-	width: 50%;
+	width: 70%;
+}
+
+@media only screen and (max-width: 768px){
+	#map{
+		width:100%;
+	}
 }
 
 #formbody{
@@ -76,9 +82,31 @@ body{
 #legend img{
 	vertical-align: middle;
 }
-html,body{
-    height: 100%
+
+
+/*
+#getDirections{
+	float:right;
 }
 
+#mode{
+	float:right;
+}
 
+#destinationLot{
+	float:right;
+}
 
+#startLot{
+	float:right;
+}
+
+*/
+
+.btn-group{
+	width:100%;
+}
+
+html,body{
+    height: 100%;
+}
