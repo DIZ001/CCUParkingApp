@@ -67,7 +67,33 @@
 							<h4><span class="glyphicon glyphicons-car"></span> Lots Available</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what Lots are available.</p>
+							<p>This is where we will display what Lots are available.
+							<!--< ? php
+							
+							// This is the code I'm trying to insert
+							
+							$servername = "localhost";
+							$username = "parkingApp";
+							$password = "CCUpark1";
+							$dbname = "parkingAppDB";	
+
+								try {
+									$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+									// set the PDO error mode to exception
+									$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+									// use the database that the program is connected too
+									$sql = "USE $dbname";
+									$conn->exec($sql);
+									echo "Connected to parkingAppDB successfully<br>";
+		
+									$sql = "SELECT * FROM parkingLots";
+									$conn->exec($sql);
+								} catch(PDOException $e) {
+									"ERROR: " . $e->getMessage();
+								}
+							? > -->
+							</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -429,7 +455,7 @@
 				$("#chkLotYY").modal();
 			});
 		});				
-	</script> 
+	</script>
 	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4b2c3kE37JJGLh8-pVaHZYDIEmdTeWKc&callback=initMap"></script>
 	
