@@ -24,9 +24,14 @@
 		
 		<div id="formbody" class="container">
 
-			<!-- Trigger the modal with a button -->
-			<button type="button" class="btn btn-primary btn-lg" id="loginBtn">Login</button>
-			<button type="button" class="btn btn-primary btn-lg" id="signupBtn">Signup</button>
+			<div class="row">
+				<!-- Trigger the modal with a button -->
+				<div class="col-md-2 col-xs-1"></div>
+				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="loginBtn">Login</button>
+				<div class="col-md-2 col-xs-2"></div>
+				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="signupBtn">Signup</button>
+				<div class="col-md-2 col-xs-1"></div>
+			</div>
 			
 			<!-- Modal for loginBtn -->
 			<div class="modal fade" id="loginModal" role="dialog">
@@ -51,7 +56,8 @@
 								<div class="checkbox">
 									<label><input type="checkbox" value="" checked>Remember me</label>
 								</div>
-								<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+								<a href="index.html" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</a>
+								<!--<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>  -->
 							</form>
 						</div>
 						<div class="modal-footer">
