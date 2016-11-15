@@ -51,7 +51,10 @@
 		id INT(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 		name varchar(50) NOT NULL,
 		vehiclesEntered INT(5) UNSIGNED NOT NULL,
-		vehiclesExited INT(5) UNSIGNED NOT NULL)";
+		vehiclesExited INT(5) UNSIGNED NOT NULL,
+		numGenSpots INT UNSIGNED NOT NULL,
+		numFacStaffSpots INT UNSIGNED NOT NULL,
+		numHandiSpots INT UNSIGNED NOT NULL)";
 		$conn->exec($sql);
 		// sql to automatically set what the first parking lot ID will be
 		$sql = "ALTER TABLE parkingLot AUTO_INCREMENT = 100";
