@@ -1,11 +1,12 @@
 <?php
 /**
-* parkingAppDB.php - Creates a database for use by the parkingApp that contains tables "user" and "parkingLot".
+* ParkingAppDB.php - Creates a database for use by the parkingApp that contains tables "user" and "parkingLot".
 * @author Jonathan Winters
 * @date 13 November 2016
 * @version 1.0
 **/
-
+	
+	//require_once("Connect.php");
 	$servername = "localhost";
 	$username = "parkingApp";
 	$password = "CCUpark1";
@@ -18,9 +19,12 @@
 		//$sql = "CREATE DATABASE parkingAppDBPDO";
 		$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
 		// use exec() because no results are returned
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
+		
 		$sql = "USE $dbname";
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
 		echo "Database created successfully<br>";
 		
 		/*
@@ -35,10 +39,12 @@
 		lastName varchar(20) NOT NULL,
 		email varchar(100) NOT NULL,
 		status varchar(100) NOT NULL)";
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
 		// sql to automatically set what the first user ID will be (with a width of 7)
 		$sql = "ALTER TABLE user AUTO_INCREMENT = 0000001";
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
 		echo "Table user created successfully<br>";
 		
 		/*
@@ -55,10 +61,12 @@
 		numGenSpots INT UNSIGNED NOT NULL,
 		numFacStaffSpots INT UNSIGNED NOT NULL,
 		numHandiSpots INT UNSIGNED NOT NULL)";
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
 		// sql to automatically set what the first parking lot ID will be
 		$sql = "ALTER TABLE parkingLot AUTO_INCREMENT = 100";
-		$conn->exec($sql);
+		$stmt = $conn->prepare($sql);
+		$stmt->execute();
 		echo "Table parkingLot created successfully<br>";
 	} catch (PDOException $e) {
 		echo $sql . "<br>" . $e->getMessage();

@@ -1,25 +1,25 @@
 <?php
 /**
-* testParkDB.php - This program populates the parkingLot table with multiple values to confirm that it works.
+* TestParkDB.php - This program populates the parkingLot table with multiple values to confirm that it works.
 * @author Jonathan Winters
 * @date 13 November 2016
 * @version 1.0
 **/
-
-	$servername = "localhost";
+	require_once("Connect.php");
+	/*$servername = "localhost";
 	$username = "parkingApp";
 	$password = "CCUpark1";
-	$dbname = "parkingAppDB";
+	$dbname = "parkingAppDB";*/
 
 	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		/*$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		
 		// use the database that the program is connected too
 		$sql = "USE $dbname";
 		$conn->exec($sql);
-		echo "Connected to parkingAppDB successfully<br>";
+		echo "Connected to parkingAppDB successfully<br>";*/
 		
 		// testing updating the database with different values
 		$sql = "UPDATE parkingLot SET vehiclesEntered=23 WHERE id=102";

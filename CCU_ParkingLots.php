@@ -6,22 +6,13 @@
 * @date 13 November 2016
 * @version 1.0
 **/
-
-	$servername = "localhost";
+	require_once("Connect.php");
+	/*$servername = "localhost";
 	$username = "parkingApp";
 	$password = "CCUpark1";
-	$dbname = "parkingAppDB";
+	$dbname = "parkingAppDB";*/
 
-	try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		// set the PDO error mode to exception
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		
-		// use the database that the program is connected too
-		$sql = "USE $dbname";
-		$conn->exec($sql);
-		echo "Connected to parkingAppDB successfully<br>";
-		
+	try {		
 		// prepare sql and bind parameters
 		$stmt = $conn->prepare("INSERT INTO parkingLot (name, vehiclesEntered, vehiclesExited, numGenSpots, numFacStaffSpots, numHandiSpots) 
 		VALUES (:name, :vehiclesEntered, :vehiclesExited, :numGenSpots, :numFacStaffSpots, :numHandiSpots)");
