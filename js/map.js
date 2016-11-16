@@ -2,6 +2,7 @@
       // prompted by your browser. If you see the error "The Geolocation service
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
+      var positionArray = new Array();
       function initMap() {
 
         //For GPS functionality
@@ -41,6 +42,7 @@
         var lotDDD = {name: 'lotDDD', lat: 33.800601,lng: -78.998891};
         lotArray.push(lotDDD);
         var lotArraySize = lotArray.length;
+
         // var lotKK2 = {lat: 33.791844,lng: -79.010199};
  
         // var lotQQ2 = {lat: 33.792237,lng: -79.016255};
@@ -104,10 +106,7 @@
         //   function(lotArray){
         //   calculateAndDisplayRoute(directionsService,directionsDisplay, lotArray);
         // })
-        document.getElementById('getDirections').addEventListener('click',
-          function(){
-          calculateAndDisplayRoute(directionsService,directionsDisplay,lotArray,lotArraySize);
-        })
+        
 
         // var onClickHandler = function(){
         //   directionsHere(directionsService,directionsDisplay,lotArray);
@@ -392,13 +391,16 @@
         // });
         // Try HTML5 geolocation.
         // Geolocation is what finds your current location. Must be approved in browser.
+
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
+
             var myPos = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
             map.setCenter(myPos);
+            positionArray.push(myPos);
           }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
           });
@@ -406,6 +408,11 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+        // myPos = map.getCenter();
+        document.getElementById('getDirections').addEventListener('click',
+          function(){
+          calculateAndDisplayRoute(directionsService,directionsDisplay,lotArray,lotArraySize);
+        })
         //display directions window
         // directionsDisplay.setMap(map);
 
@@ -474,14 +481,13 @@
       // }
       function calculateAndDisplayRoute(directionsService, directionsDisplay, lotArray,lotArraySize) {
         var selectedMode = document.getElementById('mode').value;
-        
         var startLot = document.getElementById('startLot').value;
         var destinationLot = document.getElementById('destinationLot').value;
         var foundStart = false;
         var foundEnd = false;
         var start;
         var destination;
-
+                window.alert(positionArray);
         for(i=0;i<lotArraySize;i++){
           if(startLot == lotArray[i].name){
             start = lotArray[i];
@@ -491,6 +497,9 @@
             destination = lotArray[i]; 
             foundEnd = true;           
           }
+        }
+        if(startLot=="me"){
+          startLot = positionArray[0];
         }
         // if(foundStart==false){
         //     window.alert('Could not find start');
@@ -502,7 +511,7 @@
           window.alert('Error: Make sure the starting lot and ending lot are different.');
         }else{
         directionsService.route({
-          origin: start,  // Lot G.
+          origin: startLot,  // Lot G.
           destination: destination,  // Lot GG.
           // Note that Javascript allows us to access the constant
           // using square brackets and a string value as its
