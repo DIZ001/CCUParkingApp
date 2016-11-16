@@ -498,7 +498,7 @@
           }
         }
         if(startLot=="me"){
-          startLot = positionArray[0];
+          start = positionArray[0];
         }
         // if(foundStart==false){
         //     window.alert('Could not find start');
@@ -510,7 +510,7 @@
           window.alert('Error: Make sure the starting lot and ending lot are different.');
         }else{
         directionsService.route({
-          origin: startLot,  // Lot G.
+          origin: start,  // Lot G.
           destination: destination,  // Lot GG.
           // Note that Javascript allows us to access the constant
           // using square brackets and a string value as its
