@@ -30,6 +30,9 @@ body{
 	background-repeat: no-repeat;*/
 } 
 
+#footerLogo{
+	width:180px;
+}
 
 .jumbotron{
 	font-family:"Optima";
@@ -115,8 +118,6 @@ body{
 #startLot{
 	padding:0px;
 }*/
-
-
 
 .btn-group{
 	width:100%;
