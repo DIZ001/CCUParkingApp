@@ -487,7 +487,6 @@
         var foundEnd = false;
         var start;
         var destination;
-                window.alert(positionArray);
         for(i=0;i<lotArraySize;i++){
           if(startLot == lotArray[i].name){
             start = lotArray[i];
