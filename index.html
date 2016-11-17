@@ -8,12 +8,12 @@
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	<!-- Latest complied JQuery -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	<!-- Latest compiled JavaScript -->			
-		<link rel="stylesheet" type="text/css" href="css/bsCSS.css">		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/bsCSS.css">	<!-- CSS refrence -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">	<!-- Latest Boostrap CSS -->
 	</head>
 	
 	<body>
-
+		<!-- Header of the page -->
 		<div class="container-fluid">
 			<div class="page-header">
 				<div class="jumbotron">
@@ -22,27 +22,30 @@
 			</div>
 		</div>
 		
-		<div id="map" class="container">
-				
+		<!-- Designates where the map will be placed -->
+		<div id="map" class="container">	
 				<div class="media">
 						<!-- <img src="img/parking_map.png" class="media-object center-block" style="width:700px"> -->
 				</div>
-			
 		</div>		
 
 		
 		<div id="btnBody" class="container">
 			
 			<div class="row">
-				<div class="col-md-4 col-xs-1"></div>
-				<div id="legend" class="col-md-4 col-xs-10"></div>	
-				<div class="col-md-4 col-xs-1"></div>
+				<div class="col-md-4 col-xs-1"></div>	<!-- blank column spacing -->
+				
+				<div id="legend" class="col-md-4 col-xs-10"></div>	<!-- Designates legend display -->
+				
+				<div class="col-md-4 col-xs-1"></div>	<!-- blank column spacing -->
 			</div>
 			
 			
 			<div class="row">
-				<div id="btnGroupSelect" class="btn-group">							
-					<select id="startLot" class="btn btn-primary btn-lg col-md-3 col-xs-3">
+				<div id="btnGroupSelect" class="btn-group">	<!-- lines up the row of buttons -->
+				
+					<!-- Button to chose startlot or GPS location -->						
+					<select id="startLot" class="btn btn-primary btn-lg col-md-3 col-xs-3">	
 						<option value="me">Me</option>
 						<option value="lotG">Lot G</option>
 						<option value="lotM" >Lot M</option>
@@ -59,7 +62,7 @@
 						<option value="lotDDD" >Lot DDD</option>
 					</select>	
 					
-					
+					<!-- Button to chose endlot -->
 					<select id="destinationLot" class="btn btn-primary btn-lg col-md-3 col-xs-3">
 						<option value="lotG">Lot G</option>
 						<option value="lotM" >Lot M</option>
@@ -76,11 +79,13 @@
 						<option value="lotDDD" >Lot DDD</option>
 					</select>		
 					
+					<!-- Button to choose walking/driving -->
 					<select id="mode" class="btn btn-primary btn-lg col-md-3 col-xs-3">
 						<option value="DRIVING">Drive</option>
 						<option value="WALKING">Walk</option>
 					</select>	
 					
+					<!-- Button get directions -->
 					<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-3" id="getDirections">Directions</button>					
 				
 				</div>
@@ -89,10 +94,13 @@
 				
 			<div class="row">
 				
+				<!-- Check lots button, when clicked will open up a modal(popup) -->
 				<button type="button" class="btn btn-primary btn-lg col-md-5 col-xs-5" id="chkLots">Check Lots</button>	
 						
+				<!-- Column addes spacing between the checklots and lots button -->		
 				<div class="col-md-2 col-xs-2"></div>
 					
+				<!-- Lots button, will open up a dropup menu and then a modal(popup) -->	
 				<div class="dropup">
 					<button type="button" class="btn btn-primary btn-lg dropdown-toggle col-md-5 col-xs-5" data-toggle="dropdown">Lots</button>
 						<ul class="dropdown-menu dropdown-menu-right">
@@ -114,7 +122,7 @@
 				
 			</div>
 
-
+			<!-- Modal for checklots button -->
 			<div class="modal fade" id="chkLotsMod" role="dialog">
 				<div class="modal-dialog">
 			
@@ -134,7 +142,7 @@
 				</div>
 			</div>
 
-		
+			<!-- Modal for Lot AA -->
 			<div class="modal fade" id="chkLotAA" role="dialog">
 				<div class="modal-dialog">
 			
@@ -154,7 +162,7 @@
 				</div>
 			</div>		
 			
-			
+			<!-- Modal for Lot BB -->
 			<div class="modal fade" id="chkLotBB" role="dialog">
 				<div class="modal-dialog">
 			
@@ -174,7 +182,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for lot DD -->
 			<div class="modal fade" id="chkLotDD" role="dialog">
 				<div class="modal-dialog">
 			
@@ -194,7 +202,7 @@
 				</div>
 			</div>		
 
-
+			<!-- Modal for Lot DDD -->
 			<div class="modal fade" id="chkLotDDD" role="dialog">
 				<div class="modal-dialog">
 			
@@ -214,7 +222,7 @@
 				</div>
 			</div>		
 
-			
+			<!-- Modal for Lot EE -->
 			<div class="modal fade" id="chkLotEE" role="dialog">
 				<div class="modal-dialog">
 			
@@ -234,7 +242,7 @@
 				</div>
 			</div>	
 			
-			
+			<!-- Modal for Lot G -->
 			<div class="modal fade" id="chkLotG" role="dialog">
 				<div class="modal-dialog">
 			
@@ -254,7 +262,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for Lot GG -->
 			<div class="modal fade" id="chkLotGG" role="dialog">
 				<div class="modal-dialog">
 			
@@ -274,7 +282,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for Lot HH -->
 			<div class="modal fade" id="chkLotHH" role="dialog">
 				<div class="modal-dialog">
 			
@@ -294,7 +302,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for Lot KK -->
 			<div class="modal fade" id="chkLotKK" role="dialog">
 				<div class="modal-dialog">
 			
@@ -314,7 +322,7 @@
 				</div>
 			</div>
 			
-			
+			<!-- Modal for Lot M -->
 			<div class="modal fade" id="chkLotM" role="dialog">
 				<div class="modal-dialog">
 			
@@ -334,7 +342,7 @@
 				</div>
 			</div>		
 
-
+			<!-- Modal for Lot NN -->
 			<div class="modal fade" id="chkLotNN" role="dialog">
 				<div class="modal-dialog">
 			
@@ -354,7 +362,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for Lot QQ -->
 			<div class="modal fade" id="chkLotQQ" role="dialog">
 				<div class="modal-dialog">
 			
@@ -374,7 +382,7 @@
 				</div>
 			</div>				
 			
-			
+			<!-- Modal for Lot YY -->
 			<div class="modal fade" id="chkLotYY" role="dialog">
 				<div class="modal-dialog">
 			
@@ -396,6 +404,7 @@
 			
 		</div>
 		
+		<!-- Footer code -->
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container-fluid">
 				<img id="footerLogo" src="img/cculogo.png" class="media-object">
@@ -403,6 +412,7 @@
 		</div>		
 			
 	<script>
+		<!-- Code for checklots modal button -->
 		$(document).ready(function(){
 			$("#chkLots").click(function(){
 				$("#chkLotsMod").modal();
@@ -410,9 +420,13 @@
 		});
 	</script>
 		
+	<!-- Google Maps API -->	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4b2c3kE37JJGLh8-pVaHZYDIEmdTeWKc&callback=initMap"></script>
 	
+	<!-- Modal code for the lots buttons -->
 	<script src="modal_js"></script>
+	
+	<!-- Code for the google maps -->
 	<script src="js/map.js"></script>
 	
 	</body>
