@@ -14,7 +14,7 @@
 	</head>
 	
 	<body>
-		<div class="container-fluid">
+		<div class="container-fluid">		<!-- Header of the page -->
 			<div class="page-header">
 				<div class="jumbotron">
 					<h1>CCU Parking</h1>				
@@ -25,17 +25,21 @@
 		<div id="formbody" class="container">
 
 			<div class="row">
-				<!-- Trigger the modal with a button -->
-				<div class="col-md-2 col-xs-1"></div>
-				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="loginBtn">Login</button>
+				
+				<div class="col-md-2 col-xs-1"></div>	<!-- Column spacing -->
+				
+				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="loginBtn">Login</button>	<!-- Button triggers a modal(popup) to appear -->
+				
 				<div class="col-md-2 col-xs-2"></div>
-				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="signupBtn">Signup</button>
+				
+				<button type="button" class="btn btn-primary btn-lg col-md-3 col-xs-4" id="signupBtn">Signup</button>	<!-- Button triggers a modal(popup) to appear -->
+				
 				<div class="col-md-2 col-xs-1"></div>
 			</div>
 			
 			<div class="row">
 				<div class="col-md-2 col-xs-2"></div>
-				<img src="img/cculogo2.png" class="media-object col-md-8 col-xs-8">
+				<img src="img/cculogo2.png" class="media-object col-md-8 col-xs-8">	<!-- Logo image in between two blank columns -->
 				<div class="col-md-2 col-xs-2"></div>
 			</div>
 			
@@ -45,30 +49,29 @@
 			
 				<!-- Modal content-->
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header">	<!-- Modal header content -->
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body">	<!-- Modal body contains form for the login -->
 							<form role="form">
-								<div class="form-group">
+								<div class="form-group">	<!-- Code for the login -->
 									<label for="username"><span class="glyphicon glyphicon-user"></span> Username</label>
 									<input type="text" class="form-control" id="username" placeholder="Enter email">
 								</div>
-								<div class="form-group">
+								<div class="form-group">	<!-- Code for the signup -->
 									<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
 									<input type="password" class="form-control" id="psw" placeholder="Enter password">
 								</div>
-								<div class="checkbox">
+								<div class="checkbox">	<!-- Remember me checkbox code -->
 									<label><input type="checkbox" value="" checked>Remember me</label>
 								</div>
-								<a href="index.html" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</a>
+								<a href="index.html" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</a> <!-- This is just a link to the index.html, the nextline contains the submit function -->
 								<!--<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>  -->
 							</form>
 						</div>
-						<div class="modal-footer">
+						<div class="modal-footer">	<!-- Modal footer contains the close button -->
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-
 						</div>
 					</div>		  
 				</div>
@@ -80,43 +83,43 @@
 			
 				<!-- Modal content-->
 					<div class="modal-content">
-						<div class="modal-header">
+						<div class="modal-header">	<!-- Modal header content -->
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
 						</div>
-						<div class="modal-body">
+						<div class="modal-body">	<!-- Modal body contains content for the signup form -->
 							<form role="form">
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for firstname -->
 									<label for="firstName">Firstname</label>
 									<input type="text" class="form-control" id="firstName" placeholder="Enter Firstname">
 								</div>
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for lastname -->
 									<label for="lastName">Lastname</label>
 									<input type="text" class="form-control" id="lastName" placeholder="Enter Lastname">
 								</div>				
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for email -->
 									<label for="email">Email</label>
 									<input type="email" class="form-control" id="email" placeholder="Enter email">
 								</div>		
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for usertype -->
 									<label for="userType">Parking Type</label>
 									<input type="text" class="form-control" id="userType" placeholder="Resident / Commuter / UP Commuter / Veteran">
 								</div>
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for username -->
 									<label for="username">Username</label>
 									<input type="text" class="form-control" id="username" placeholder="Enter email">
 								</div>
-								<div class="form-group">
+								<div class="form-group">	<!-- Form for password -->
 									<label for="psw">Password</label>
 									<input type="password" class="form-control" id="psw" placeholder="Enter password">
 								</div>
-
+								<!-- Sumbit button for signup -->
 								<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Signup</button>
 							</form>
 						</div>
 						<div class="modal-footer">
+							<!-- close button for the modal -->
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-
 						</div>
 					</div>		  
 				</div>
@@ -124,6 +127,7 @@
 			
 		</div>
 		
+		<!-- Footer for the page -->
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container-fluid">
 				<img id="footerLogo" src="img/cculogo.png" class="media-object">
@@ -131,12 +135,14 @@
 		</div>			
 		
 	<script>
+		<!-- code that allows login modal to popup -->
 		$(document).ready(function(){
 			$("#loginBtn").click(function(){
 				$("#loginModal").modal();
 			});
 		});
 		
+		<!-- code that allows signup modal to popup -->
 		$(document).ready(function(){
 			$("#signupBtn").click(function(){
 				$("#signupModal").modal();
