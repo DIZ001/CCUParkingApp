@@ -14,6 +14,7 @@ import javax.*;
 **/
 
 public class ParkingFacade {
+	
 	private static ParkingFacade singleton;
 	
 	private ParkingDataAccess dao;
@@ -30,30 +31,6 @@ public class ParkingFacade {
 		}
 		return singleton;
 	}
-	
-	//Lot Reference Method Used to Determine Which Lot We Are Talking About//
-	public static String determineLot(String lotId){
-		String temp = "No lot";
-		if(lotId.equalsIgnoreCase("kimbel") || lotId.equalsIgnoreCase("kimbellot")){
-			temp = "kimbellot";
-			return temp;
-		}
-		else if(lotId.equalsIgnoreCase("extended") || lotId.equalsIgnoreCase("extendedlot"))
-		{
-			temp = "extendedlot";
-			return temp;
-		}
-		else if(lotId.equalsIgnoreCase("science") || lotId.equalsIgnoreCase("sciencelot")){
-			temp = "sciencelot";
-			return temp;
-		}
-		else
-		{
-			temp = "nulllot";
-			return temp;
-		}
-	}
-	
 	
 	public ParkingLot [] getLots() throws SQLException, ClassNotFoundException {
 		//get the connection from the Data Access singleton object
@@ -95,20 +72,14 @@ public class ParkingFacade {
 		}
 	}
 
-	public ParkingSpot [] getALot(int lotId) throws SQLException, ClassNotFoundException {
+	public ParkingSpot [] getLotById(int lotId) throws SQLException, ClassNotFoundException {
 		//get the connection from the Data Access singleton object
 		Connection con = dao.getConnection();
-		
-		//finding out which lot is being referred to//
-		String lot = determineLot(lotId);
 		
 		//Execute the query
 		PreparedStatement stmt = con.prepareStatement("SELECT * FROM parkingLot WHERE id=" + lotId);
 		ResultSet rs = stmt.executeQuery();
 		
-		//Build the array list of ParkingLot objects
-		ArrayList<ParkingLot> lotArray = new ArrayList<ParkingLot>();
-		int count = 0;
 		while(rs.next()) {
 			//create Parking spot objects and load them into the array here//
 			int theId = rs.getInt("id");
@@ -120,13 +91,9 @@ public class ParkingFacade {
 			int theHandiSpots = rs.getInt("numHandiSpots");
 			
 			ParkingLot lot = new ParkingLot(theId, theName, theVehEnt, theVehExit, theGenSpots, theFacStaffSpots, theHandiSpots);
-			
-			lotArray.add(lot);
-			count++;
 		}
-		if(count > 0) {
-			lotArray = lotArray.clone();
-			return lotArray;
+		if(lotId == theId)) {			
+			return lot;
 		}
 		else{
 			return null;
