@@ -1,0 +1,16 @@
+
+	"parkingLots":[
+		{"lotName":"Lot AA", "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot BB",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot DD",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"75", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot DDD",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot EE",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot G",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"1000", "numFacStaffSpots":"0", "numHandiSpots":"20"},
+	{"lotName":"Lot GG",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot HH",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot KK",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot M",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot NN",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot QQ",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"},
+	{"lotName":"Lot YY",  "vehiclesEntered":"0", "vehiclesExited":"0", "numGenSpots":"50", "numFacStaffSpots":"50", "numHandiSpots":"10"}
+	]

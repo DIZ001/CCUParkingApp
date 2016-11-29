@@ -1,0 +1,128 @@
+body{
+	background-color:#e6e6e6;
+	/*
+	background-image: url("img/cculogo2.png");
+	background-repeat: no-repeat;
+	background-position: center;*/
+}
+#map{
+	height:60%;
+	width: 70%;
+}
+
+@media only screen and (max-width: 768px){
+	/*
+	body{
+		background-image: url("img/cculogo2.png");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+	}*/
+	
+	#map{
+		width:90%;
+	}
+}
+
+
+#formbody{/*
+	background-image: url("img/cculogo2.png");
+	background-repeat: no-repeat;*/
+} 
+
+#footerLogo{
+	width:180px;
+}
+
+.jumbotron{
+	font-family:"Optima";
+    background-color:#007073 !important;
+    color:white;
+}
+
+.page-header{
+	/*background-color:e6e6e6;*/
+	color:white;
+}
+
+.modal-header, h4, .close{
+	background-color:#007073;
+	color:white !important;
+	text-align:center;
+	font-size:30px;
+}
+			
+.model-header{
+	padding:35px 50px;
+}			
+	
+.modal-body{
+	padding:40px 50px;
+}
+	
+.modal-footer{
+	background-color:#007073;
+}
+
+.btn.btn-primary.btn-lg{
+	background-color:#007073;
+	color:white;	
+}
+
+#loginBtn{
+	/*margin-right:30px;*/
+}
+
+#signupBtn{	
+	/*margin-left:30px;*/
+}
+
+
+#btnBody{
+	margin-bottom:60px;
+	/*margin-bottom:50px;
+	padding-bottom:30px;
+	padding-top:30px;*/
+}
+
+#legend {
+	font-family: Calibri, sans-serif;
+	background: #009999;
+	padding: 10px;
+	margin: 10px;
+	border: 3px solid #000;
+	color: #FFF;
+	/*width:20%;*/
+	
+}
+#legend img{
+	vertical-align: middle;
+}
+
+#btnGroupSelect{
+	margin-bottom:10px;
+}
+
+#getDirections{
+	padding-bottom:7px;
+}
+/*
+#mode{
+	float:right;
+}
+
+#destinationLot{
+	float:right;
+}
+
+#startLot{
+	padding:0px;
+}*/
+
+.btn-group{
+	width:100%;
+}
+
+html,body{
+    height: 100%;
+}
