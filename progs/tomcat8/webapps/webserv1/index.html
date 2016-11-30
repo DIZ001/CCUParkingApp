@@ -22,6 +22,42 @@
 			</div>
 		</div>
 		
+		
+		
+		
+	<script>
+		<!-- Code for checklots modal button -->
+		$(document).ready(function(){
+			$("#chkLots").click(function(){
+				$("#chkLotsMod").modal();
+			});
+			
+			$("#chkLots").click(function() {
+				var theUrl = "http://localhost:8080/webserv1/resources/ws2/parkingLots/";
+				$.ajax( {
+					url: theUrl,
+					type: "GET",
+					dataType: "text",
+					success: function(result) {
+						var lotArray = JSON.parse(result);
+						var capacity = 0;
+						var output="<h3>Parking Lots</h3>";
+						for(var i=0; i<lotArray.length;i++) {
+						capacity = lotArray[i].totalEntered - lotArray[i].totalExited;
+							output += "<p>" + lotArray[i].lotName + ": " + lotArray[i].genSpots + " General Spots, " + lotArray[i].facStaffSpots +" Faculty/Staff Spots, " + lotArray[i].handiSpots + " Handicap Spots" + "<br /> Capacity: " + capacity + "</p>";
+						}
+						$("#p_retrieveAllLots").html(output); 
+					},
+					error:function(xhr) {
+						$("#p_retrieveAllLots").html("Error:"+xhr.status+" "+xhr.statusText);}
+				} );
+			});
+		});
+	</script> 
+		
+
+		
+		
 		<!-- Designates where the map will be placed -->
 		<div id="map" class="container">	
 				<div class="media">
@@ -121,6 +157,8 @@
 				</div>	
 				
 			</div>
+			
+			
 
 			<!-- Modal for checklots button -->
 			<div class="modal fade" id="chkLotsMod" role="dialog">
@@ -129,34 +167,11 @@
 				<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							<button id="btnAllLots" type="button" class="close" data-dismiss="modal">&times;</button>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4><span class="glyphicon glyphicons-car"></span>Lots Available</h4>
 						</div>
 						<div class="modal-body">
-							<p>
-								<script>
-									$(document).ready( function() {
-									$("#btnAllLots").click(function() {
-									var theUrl = "http://localhost:8080/webserv1/resources/ws2/parkingLots/";
-									$.ajax( {
-									url: theUrl,
-									type: "GET",
-									dataType: "text",
-									success: function(result) {
-									var lotArray = JSON.parse(result);
-									var output="<h3>Parking Lots</h3>";
-									for(var i=0; i<lotArray.length;i++) {
-										output += "<p> " + lotArray[i].lotName + " :/nNumber of General Spots" + lotArray[i].lotGenSpots + "/nNumber of Faculty/Staff Spots" + lotArray[i].lotFacStaffSpots + " /nNumber of Handicap Spots" + lotArray[i].lotHandiSpots + "/nVehicles Entered lot: " + lotArray[i].vehEntLot + "/nVehicles Exited lot: " + lotArray[i].vehExitLot + " </p>";
-									}
-									//$("#p_retrieveAllLots").html(output); },
-									//error:function(xhr) {
-									//$("#p_retrieveAllLots").html("Error:"+xhr.status+ ""+xhr.statusText);}
-									} );
-									});
-									});
-								
-								</script>
-							</p>
+							<p id=p_retrieveAllLots> List of Parking Lots go here </p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -176,7 +191,7 @@
 							<h4>Lot AA</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotAA>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -196,7 +211,7 @@
 							<h4>Lot BB</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotBB>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -216,7 +231,7 @@
 							<h4>Lot DD</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotDD>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -236,7 +251,7 @@
 							<h4>Lot DDD</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotDDD>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -256,7 +271,7 @@
 							<h4>Lot EE</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotEE>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -276,7 +291,7 @@
 							<h4>Lot G</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotG>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -296,7 +311,7 @@
 							<h4>Lot GG</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotGG>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -316,7 +331,7 @@
 							<h4>Lot HH</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotHH>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -336,7 +351,7 @@
 							<h4>Lot KK</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotKK>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -356,7 +371,7 @@
 							<h4>Lot M</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotM>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -376,7 +391,7 @@
 							<h4>Lot NN</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotNN>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -396,7 +411,7 @@
 							<h4>Lot QQ</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotQQ>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -416,7 +431,7 @@
 							<h4>Lot YY</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what spots are available.</p>
+							<p id=p_retrieveLotYY>This is where we will display what spots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -434,14 +449,7 @@
 			</div>
 		</div>		
 			
-	<script>
-		<!-- Code for checklots modal button -->
-		$(document).ready(function(){
-			$("#chkLots").click(function(){
-				$("#chkLotsMod").modal();
-			});
-		});
-	</script>
+
 		
 	<!-- Google Maps API -->	
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4b2c3kE37JJGLh8-pVaHZYDIEmdTeWKc&callback=initMap"></script>

@@ -10,6 +10,7 @@
 			$("").click(function(){
 				$("#chkLotBB").modal();
 			});
+			
 		});				
 
 		$(document).ready(function(){

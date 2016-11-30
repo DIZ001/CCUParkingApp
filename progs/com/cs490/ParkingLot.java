@@ -39,6 +39,7 @@ public class ParkingLot {
 	**/
 	public ParkingLot(String aName, int aVehEnt, int aVehExit, int aGenSpot, int aFacStaffSpot, int aHandiSpot) {
 		setName(aName);
+		getTotalVehicles(aVehEnt, aVehExit);
 		setVehiclesEntered(aVehEnt);
 		setVehiclesExited(aVehExit);
 		setGenSpots(aGenSpot);
@@ -131,9 +132,9 @@ public class ParkingLot {
 	* @return returns the number of general spots in the parking lot
 	* 
 	**/
-	public int getTotalVehicles() {
-		int totalEnt = getTotalEnt();
-		int totalExit = getTotalExit();
+	public int getTotalVehicles(aTotalEnt, aTotalExit) {
+		int totalEnt = aTotalEnt;
+		int totalExit = aTotalExit;
 		if (totalEnt > totalExit) {
 			int vehiclesInLot = totalEnt - totalExit;
 			return vehiclesInLot;

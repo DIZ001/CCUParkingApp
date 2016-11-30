@@ -37,7 +37,7 @@ public class ParkingFacade {
 		Connection con = dao.getConnection();
 		
 		//Execute the query
-		PreparedStatement pStmt = con.prepareStatement("SELECT name, vehiclesEntered, vehiclesExited, numGenSpots, numFacStaffSpots, numHandiSpots FROM parkingLot");
+		PreparedStatement pStmt = con.prepareStatement("SELECT * FROM parkingLot");
 		ResultSet rs = pStmt.executeQuery();
 		
 		//Build the array list of ParkingLot objects
@@ -76,9 +76,13 @@ public class ParkingFacade {
 		//get the connection from the Data Access singleton object
 		Connection con = dao.getConnection();
 		
+		System.out.println("checkpoint 1");
+		
 		//Execute the query
-		PreparedStatement stmt = con.prepareStatement("SELECT name, vehiclesEntered, vehiclesExited, numGenSpots, numFacStaffSpots, numHandiSpots  FROM parkingLot WHERE name=" + lotName);
+		PreparedStatement stmt = con.prepareStatement("SELECT * FROM parkingLot WHERE name LIKE '" + lotName + "'");
 		ResultSet rs = stmt.executeQuery();
+		
+		System.out.println("Checkpoint 2");
 		
 		while(rs.next()) {
 			//create Parking lot objects and load them into the array here//
@@ -93,6 +97,7 @@ public class ParkingFacade {
 			ParkingLot lot = new ParkingLot(theName, theVehEnt, theVehExit, theGenSpots, theFacStaffSpots, theHandiSpots);
 			return lot;
 		}
+		System.out.println("checkpoint 3");
 		return null;
 		
 	}

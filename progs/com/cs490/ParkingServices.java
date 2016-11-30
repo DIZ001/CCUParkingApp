@@ -67,29 +67,21 @@ public class ParkingServices {
 		}
 	}
 	/**
-	* The optional id indicates a path parameter (a parameter passed directly in the URL path)
-	* @PathParam("id") means that the value in the url that occupies the where /{id} is, will be
-	* passed through theId parameter to the method
-	*
 	* The @QueryParam("id") looks for a section of the url after the 
 	* ? that reads id=something. The int in the url that occupies
 	* the 'something' spot will be passed through the theId parameter into 
 	* the method
-	*
-	* Having trouble with this **********************************************************************
-	*
 	*/
-	@Path("/parkingLots/{name}")
+	@Path("/parkingLots/parkingLot")
 	@GET
 	@Produces("text/plain")
-	public Response getLotByName(@PathParam("name") String theName) throws NamingException,SQLException,ClassNotFoundException {
+	public Response getLotByName(@QueryParam("name") String theName) throws NamingException,SQLException,ClassNotFoundException {
 		
 		//Get a reference to the ParkingFacade singleton object
 		ParkingFacade pFacade = ParkingFacade.getInstance();
 		
 		//Call the ParkingFacade method getALot to get all the information pertaining to a specific lot
 		ParkingLot resultLot = pFacade.getLotByName(theName);
-		
 		//Create a Json string representation of the array of spots
 		if(resultLot != null){
 			Gson theGsonObj = new Gson();
