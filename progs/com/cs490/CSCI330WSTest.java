@@ -1,4 +1,4 @@
-package com.cs330;
+package com.cs490;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,7 +9,7 @@ public class CSCI330WSTest{
 	@GET
 	@Produces("text/plain")
 	public String getMessage1(){
-		return "My first web service in CSCI 330 is working!-Good job Dakota";
+		return "My first web service in CSCI 330 is working!-Good job Jon";
 	}
 
 	@Path("/test2")

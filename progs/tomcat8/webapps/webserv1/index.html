@@ -97,7 +97,7 @@
 				<!-- Check lots button, when clicked will open up a modal(popup) -->
 				<button type="button" class="btn btn-primary btn-lg col-md-5 col-xs-5" id="chkLots">Check Lots</button>	
 						
-				<!-- Column addes spacing between the checklots and lots button -->		
+				<!-- Column adds spacing between the checklots and lots button -->		
 				<div class="col-md-2 col-xs-2"></div>
 					
 				<!-- Lots button, will open up a dropup menu and then a modal(popup) -->	
@@ -129,12 +129,33 @@
 				<!-- Modal content-->
 					<div class="modal-content">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<button id="btnAllLots" type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4><span class="glyphicon glyphicons-car"></span>Lots Available</h4>
 						</div>
 						<div class="modal-body">
-							<p>This is where we will display what Lots are available.
-								<script src="displayLots.php"></script>
+							<p>
+								<script>
+									$(document).ready( function() {
+									$("#btnAllLots").click(function() {
+									var theUrl = "http://localhost:8080/webserv1/resources/ws2/parkingLots/";
+									$.ajax( {
+									url: theUrl,
+									type: "GET",
+									dataType: "text",
+									success: function(result) {
+									var lotArray = JSON.parse(result);
+									var output="<h3>Parking Lots</h3>";
+									for(var i=0; i<lotArray.length;i++) {
+										output += "<p> " + lotArray[i].lotName + " :/nNumber of General Spots" + lotArray[i].lotGenSpots + "/nNumber of Faculty/Staff Spots" + lotArray[i].lotFacStaffSpots + " /nNumber of Handicap Spots" + lotArray[i].lotHandiSpots + "/nVehicles Entered lot: " + lotArray[i].vehEntLot + "/nVehicles Exited lot: " + lotArray[i].vehExitLot + " </p>";
+									}
+									//$("#p_retrieveAllLots").html(output); },
+									//error:function(xhr) {
+									//$("#p_retrieveAllLots").html("Error:"+xhr.status+ ""+xhr.statusText);}
+									} );
+									});
+									});
+								
+								</script>
 							</p>
 						</div>
 						<div class="modal-footer">
@@ -426,7 +447,7 @@
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4b2c3kE37JJGLh8-pVaHZYDIEmdTeWKc&callback=initMap"></script>
 	
 	<!-- Modal code for the lots buttons -->
-	<script src="modal_js"></script>
+	<script src="js/modal_js.js"></script>
 	
 	<!-- Code for the google maps -->
 	<script src="js/map.js"></script>

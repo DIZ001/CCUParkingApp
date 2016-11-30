@@ -8,9 +8,9 @@
 	
 	//require_once("Connect.php");
 	$servername = "localhost";
-	$username = "parkingApp";
-	$password = "ccupark1";
-	$dbname = "parkingAppDB";
+	$username = "root";
+	$password = "CCUpark1";
+	$dbname = "parkingAppDb";
 
 	try {
 		$conn = new PDO("mysql:host=$servername", $username, $password);

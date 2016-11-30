@@ -28,15 +28,16 @@ import javax.*;
 * 
 * 
 * 
-**/
+*/
 
 @Path("ws2")
 public class ParkingServices {
+	
 	/**
 	* 
 	* 
 	*
-	**/
+	*/
 	@Path("/parkingLots/")
 	@GET
 	@Produces("text/plain")
@@ -46,9 +47,9 @@ public class ParkingServices {
 		ParkingFacade pFacade = ParkingFacade.getInstance();
 		
 		// Call the ParkingFacade method getLots to get the lots
-		ParkingLot[] resultArray = pFacade.getLots();
-		
-		//Create a Json string representation of the array of spots
+		ArrayList<ParkingLot> resultArray = pFacade.getLots();
+		System.out.println("Got this far.");
+		//Create a Json string representation of the array of lots
 		if(resultArray != null){
 			Gson theGsonObj = new Gson();
 			String result = theGsonObj.toJson(resultArray);
@@ -58,6 +59,7 @@ public class ParkingServices {
 			//Setting the HTTP status code to 200
 			rb.status(200);
 			//Create and return the Response object
+			System.out.println("ayeee");
 			return rb.build();
 		}//end if
 		else {
@@ -73,20 +75,23 @@ public class ParkingServices {
 	* ? that reads id=something. The int in the url that occupies
 	* the 'something' spot will be passed through the theId parameter into 
 	* the method
-	**/
-	@Path("/parkingLots/{id}")
+	*
+	* Having trouble with this **********************************************************************
+	*
+	*/
+	@Path("/parkingLots/{name}")
 	@GET
 	@Produces("text/plain")
-	public Response getLotById(@QueryParam("id") int theId) throws NamingException,SQLException,ClassNotFoundException {
+	public Response getLotByName(@PathParam("name") String theName) throws NamingException,SQLException,ClassNotFoundException {
 		
 		//Get a reference to the ParkingFacade singleton object
 		ParkingFacade pFacade = ParkingFacade.getInstance();
 		
 		//Call the ParkingFacade method getALot to get all the information pertaining to a specific lot
-		ParkingLot resultLot = pFacade.getLotById(theId);
+		ParkingLot resultLot = pFacade.getLotByName(theName);
 		
 		//Create a Json string representation of the array of spots
-		if(resultArray != null){
+		if(resultLot != null){
 			Gson theGsonObj = new Gson();
 			String result = theGsonObj.toJson(resultLot);
 			

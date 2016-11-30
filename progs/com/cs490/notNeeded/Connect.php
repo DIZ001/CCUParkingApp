@@ -8,8 +8,8 @@
 
 	$servername = "localhost";
 	$username = "parkingApp";
-	$password = "CCUpark1";
-	$dbname = "parkingAppDB";
+	$password = "ccupark1";
+	$dbname = "parkingAppDb";
 	
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

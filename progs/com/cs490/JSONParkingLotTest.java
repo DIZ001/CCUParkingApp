@@ -6,9 +6,9 @@ public class JSONParkingLotTest {
 	public static void main(String[] args) {
 	
 		//Ingredient i = new Ingredient(12,"orange","fruit");
-		ParkingLot aLot = new ParkingLot("Lot AA", 50, 50, 5);
+		ParkingLot aLot = new ParkingLot("Lot AA", 23, 12, 50, 50, 5);
 		
-		System.out.println("Java object: "+aLot.toString());
+		System.out.println("Java object: "+ aLot.toString());
 		
 		//Create the new Gson object to do the marshalling
 		Gson theGsonObj = new Gson();
@@ -19,7 +19,7 @@ public class JSONParkingLotTest {
 		//Print the JSON formatted object
 		System.out.println("JSON formatted: " + jsonParkingLot);
 		
-		//Convert the JSON string back into an Ingredient object (unmarshalling)
+		//Convert the JSON string back into an ParkingLot object (unmarshalling)
 		ParkingLot aLot2 = theGsonObj.fromJson(jsonParkingLot, ParkingLot.class);
 		
 		//Print the newly inflated Ingredient object

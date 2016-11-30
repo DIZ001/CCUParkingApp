@@ -1,17 +1,19 @@
+package com.cs490;
+import java.sql.*;
 /**
 * CSCI 490 Parking App Project
-* IngredientForRecipe.java
 * Purpose: This program creates a ParkingLot object.
 * 
 * @author Jonathan Winters, Hailey Crouse, Frankie Murray, CJ Garling
 * @date Created 7 November 2016
 * @version 1.0, 7 November 2016
 */
-package com.cs490;
 public class ParkingLot {
 	
+	//private ParkingDataAccess dao;
+	
 	//declaring and initializing variables
-	int lotId = 0;
+	//int lotId = 0;
 	String lotName = "no name yet";
 	int genSpots = 0;
 	int handiSpots = 0;
@@ -25,10 +27,8 @@ public class ParkingLot {
 	* an ID that uniquely identifies it, and sets the amount of 
 	* general spots, handicap spots, and faculty/staff spots available
 	* in the lot.
-	* @param aId 
-	* 	unique ID for the parking lot
 	* @param aName
-	* 	name of the parking lotfgsd
+	* 	name of the parking lot
 	* @param aGenSpot
 	* 	number of general spots in the parking lot
 	* @param aFacStaffSpot
@@ -37,9 +37,10 @@ public class ParkingLot {
 	* 	number of handicap spots in the parking lot
 	* 
 	**/
-	public void ParkingLot(String aName, int aGenSpot, int aFacStaffSpot, int aHandiSpot) {
-		//setId(000);
+	public ParkingLot(String aName, int aVehEnt, int aVehExit, int aGenSpot, int aFacStaffSpot, int aHandiSpot) {
 		setName(aName);
+		setVehiclesEntered(aVehEnt);
+		setVehiclesExited(aVehExit);
 		setGenSpots(aGenSpot);
 		setFacStaffSpots(aFacStaffSpot);
 		setHandiSpots(aHandiSpot);
@@ -52,10 +53,15 @@ public class ParkingLot {
 	* 
 	* @return returns the parking lot's ID
 	* 
-	**/
-	public int getId() {
+	*
+	public int getId(String lotName) throws SQLException {
+		Connection con = dao.getConnection();
+		PreparedStatement pStmt = con.prepareStatement("SELECT id FROM parkingLot WHERE name LIKE '" + lotName + "'");
+		ResultSet rs = pStmt.executeQuery();
+		int lotId = rs.getInt("id");
 		return lotId;
 	}
+	*/
 	
 	/**
 	* Retrieves the parking lot's name
@@ -138,58 +144,35 @@ public class ParkingLot {
 	}
 	
 	
-	
-	
 	// SETTERS //
 	
-	/**
-	* Retrieves the parking lot's ID
-	* 
-	* @return returns the parking lot's ID
-	* 
-	**/
 	private void setGenSpots(int aGenSpot) {
 		genSpots = aGenSpot;
 	}
 	
-	/**
-	* Retrieves the parking lot's ID
-	* 
-	* @return returns the parking lot's ID
-	* 
-	**/
 	private void setHandiSpots(int aHandiSpot) {
 		handiSpots = aHandiSpot;
 	}
 	
-	/**
-	* Retrieves the parking lot's ID
-	* 
-	* @return returns the parking lot's ID
-	* 
-	**/
 	private void setFacStaffSpots(int aFacStaffSpot) {
 		facStaffSpots = aFacStaffSpot;
 	}
 	
-	/**
-	* Retrieves the parking lot's ID
-	* 
-	* @return returns the parking lot's ID
-	* 
-	**/
+	/*
 	private void setId(int aLotId) {
 		lotId = aLotId;
-	}
+	}*/
 	
-	/**
-	* Retrieves the parking lot's ID
-	* 
-	* @return returns the parking lot's ID
-	* 
-	**/
 	public void setName(String aName) {
 		lotName = aName;
+	}
+
+	private void setVehiclesExited(int aVehExit) {
+		totalExited = aVehExit;
+	}
+	
+	private void setVehiclesEntered(int aVehEnt) {
+		totalEntered = aVehEnt;
 	}
 	
 }
