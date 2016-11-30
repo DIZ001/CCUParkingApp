@@ -6,7 +6,7 @@
 * @date 13 November 2016
 * @version 1.0
 **/
-	require_once("Connect.php");
+	require_once 'connect.php';
 	/*$servername = "localhost";
 	$username = "parkingApp";
 	$password = "CCUpark1";
