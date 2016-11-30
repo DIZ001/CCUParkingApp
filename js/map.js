@@ -3,7 +3,16 @@
       // failed.", it means you probably did not give permission for the browser to
       // locate you.
       var positionArray = new Array();
+
+
+
+
+
       function initMap() {
+       
+       
+       
+       
 
         //For GPS functionality
 
@@ -74,9 +83,16 @@
         //   new google.maps.LatLng(33.781755, -79.026981),
         //   new google.maps.LatLng(33.801691, -78.988061)
         //   );
+       
+       
+       
+       
+       
+       
         var map = new google.maps.Map(document.getElementById('map'), {
 
 
+       
           // //prevents zooming with +/- buttons
           // zoomControl: false,
           // //prevents zooming by double-left-clicking
@@ -84,15 +100,22 @@
           // //prevents scrolling with mouse
           // scrollwheel: false,
           // //disable street view 
+         zoomControl: true,
+         disableDoubleClickZoom: true,
+         scrollwheel: true,
+         mapTypeControl: true,
+         scaleControl: true,
+         streetViewControl: true,
+         rotateControl: true,
+         fullscreenControl: true,
           
-
           streetViewControl: false,
           minZoom:15,
           maxZoom:18,
 
           center: {lat: 33.7950, lng: -79.0117},
-          mapTypeControl: true,
-          mapTypeConrolOptions:{
+          
+          mapTypeControlOptions:{
           style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
           mapTypeIds: ['map','satellite']
           },
@@ -100,6 +123,15 @@
           //zoom with best view of campus parkinglots
           zoom: 14
         });
+      
+       
+       
+       
+       
+       
+       
+       
+       
         directionsDisplay.setMap(map);
         // calculateAndDisplayRoute(directionsService,directionsDisplay,lotArray);
         // document.getElementById('mode').addEventListener('change',
