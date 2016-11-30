@@ -6,16 +6,16 @@
 * @version 1.0
 **/
 
-	$servername = "localhost";
-	$username = "parkingApp";
-	$password = "CCUpark1";
-	$dbname = "parkingAppDB";
+	$servername = 'localhost';
+	$username = 'parkingApp';
+	$password = 'ccupark1';
+	$dbname = 'parkingapp';
 	
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		// set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		echo "Connected successfully <br>"; 
+		//echo "Connected successfully <br>"; 
 		}
 	catch(PDOException $e)
 		{

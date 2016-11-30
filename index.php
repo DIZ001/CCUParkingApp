@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
-		<title>CCU Parking App</title>
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>	<!-- Latest complied JQuery -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	<!-- Latest compiled JavaScript -->			
-		<link rel="stylesheet" type="text/css" href="css/bsCSS.css">		
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	</head>
-	
-	<body>
-	<?php require_once("Connect.php"); ?>
-		<div class="container-fluid">
-			<div class="page-header">
-				<div class="jumbotron">
-					<h1>CCU Parking App</h1>	
-				</div>
-			</div>
-		</div>
-		
-		<div id="map" class="container">
+<?php
+$pagetitle = "HOME";
+require_once "_header.php";
+?>
+<div id="map" class="container">
 				
 				<div class="media">
 						<!-- <img src="img/parking_map.png" class="media-object center-block" style="width:700px"> -->
@@ -123,8 +104,7 @@
 							<h4><span class="glyphicon glyphicons-car"></span>Lots Available</h4>
 						</div>
 						<div class="modal-body">
-							<p> <?php include("displayLots.php"); ?> </p>
-							
+							<p>This is where we will display what Lots are available.</p>
 						</div>
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
@@ -395,23 +375,19 @@
 			
 		</div>
 		
-		<div class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container-fluid">
-				<img id="footerLogo" src="img/cculogo.png" class="media-object">
-			</div>
-		</div>		
-			
 	<script>
-		$(document).ready(function(){
-			$("#chkLots").click(function(){
-				$("#chkLotsMod").modal();
-			});
+	$(document).ready(function(){
+		$("#chkLots").click(function(){
+			$("#chkLotsMod").modal();
 		});
+	});
 	</script>
 		
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4b2c3kE37JJGLh8-pVaHZYDIEmdTeWKc&callback=initMap"></script>
 	
-	<script src="modal_js.js"></script>
-	<script src="map.js"></script>
-	
-	</body>
+	<script src="modal_js"></script>
+	<script src="js/map.js"></script>
+
+<?php
+require_once "_footer.php";
+?>

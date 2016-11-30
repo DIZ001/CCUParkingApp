@@ -5,7 +5,7 @@ require_once 'connect.php';
 
 if(isset($_SESSION['id']))
 {
-    echo "<p class='error'>You are already logged in.</p>";
+    echo "<p class='error'>You are already logged in. <a href='logout.php'>Click here to LOGOUT.</a></p>";
     include_once '_footer.php';
     exit();
 }
@@ -19,6 +19,10 @@ if(isset ($_POST['loginButton']))
     //CLEANSE DATA
     $formfield['email'] = trim($_POST['email']);
     $formfield['pwd'] = trim($_POST['pwd']);
+	
+	//CHECKING FOR EMPTY FIELDS
+    if (empty($formfield['email'])){$errormsg .= "<p class='error'>EMAIL CANNOT BE EMPTY.</p>";}
+    if (empty($formfield['pwd'])){$errormsg .= "<p class='error'>PASSWORD CANNOT BE EMPTY.</p>";}
 
     //display error
     if($errormsg !="")
@@ -31,7 +35,7 @@ if(isset ($_POST['loginButton']))
         try
         {
             $sql = 'SELECT email, pwd FROM user WHERE email = :email';
-            $s = $pdo->prepare($sql);
+            $s = $conn->prepare($sql);
             $s->bindValue(':email', $formfield['email']);
             $s->execute();
             $count = $s->rowCount();
@@ -61,7 +65,7 @@ if(isset ($_POST['loginButton']))
                 $sql2 = 'SELECT * FROM user
                              WHERE email = :email
                              AND pwd = :pwd';
-                $s2 = $pdo->prepare($sql2);
+                $s2 = $conn->prepare($sql2);
                 $s2->bindValue(':email', $confirmedemail);
                 $s2->bindValue(':pwd', $confirmedpwd);
                 $s2->execute();
@@ -99,20 +103,43 @@ if(isset ($_POST['loginButton']))
 if(isset ($_POST['signupButton'])){
 	//SANITIZE USER INPUT
     //CREATE NEW VARIABLES TO STORE CLEANSED DATA
+	$formfield['name'] = trim($_POST['name']);
     $formfield['email'] = trim($_POST['email']);
-    $formfield['pwd'] = trim($_POST['pwd']);
+	$formfield['status'] = trim($_POST['status']);
+	$formfield['pwd'] = trim($_POST['pwd']);
+
 
     // ERROR CHECKING - APPEND THE $errormsg VAR WITH ANY ERRORS
+	/****************************************************************************
+     CHECK FOR EMPTY FIELDS
+     Complete the lines below for any REQIURED form fields. Do not do for optional fields.
+    **************************************************************************** */
+    if(empty($formfield['name'])){$errormsg .= "<p>NAME CANNOT BE EMPTY.</p>";}
+    if(empty($formfield['email'])){$errormsg .= "<p>EMAIL CANNOT BE EMPTY.</p>";}
+    if(empty($formfield['status'])){$errormsg .= "<p>PARKING TYPE CANNOT BE EMPTY.</p>";}
+    if(empty($formfield['pwd'])){$errormsg .= "<p>PASSWORD CANNOT BE EMPTY.</p>";}
 
+	/******************************************************************************
+     CHECK TO SEE IF EMAIL IS VALID
+     There are many variations that can be used.
+     Tutorial on Regular Expressions:  http://youtu.be/GVZOJ1rEnUg?list=PLfdtiltiRHWGRPyPMGuLPWuiWgEI9Kp1w
+     ****************************************************************************  */
+    if(!preg_match('/[\w-]+@([\w-]+\.)+[\w-]+/', $formfield['email']))
+    {
+        $errormsg .= "<p>EMAIL IS NOT A VALID EMAIL.</p>";
+    }
+	
+	
 /*  ****************************************************************************
     CHECK TO SEE IF THE EMAIL ALREADY EXISTS IN THE DATABASE
     ****************************************************************************
 */
+	
     try
     {
         $sqlemails = "SELECT email FROM user WHERE email = :email";
         // Prepares a statement for execution and returns a statement object
-        $stmtemails= $pdo->prepare($sqlemails);
+        $stmtemails= $conn->prepare($sqlemails);
   
         $stmtemails->bindValue(':email', $formfield['email']);
         //Execute the prepared statement.
@@ -152,9 +179,9 @@ if(isset ($_POST['signupButton'])){
             ****************************************************************************
         */
 
-            $sqlinsert = 'INSERT INTO users (`name`, `email`, `pwd`, `status`)
+            $sqlinsert = 'INSERT INTO user (`name`, `email`, `pwd`, `status`)
                                 VALUES (:name, :email, :pwd, :status)';
-            $stmtinsert = $pdo->prepare($sqlinsert);
+            $stmtinsert = $conn->prepare($sqlinsert);
             $stmtinsert->bindvalue(':name', $formfield['name']); // using data from form
             $stmtinsert->bindvalue(':email', $formfield['email']); // using data from form
             $stmtinsert->bindvalue(':pwd', $formfield['pwd']);
@@ -162,13 +189,13 @@ if(isset ($_POST['signupButton'])){
     
             $stmtinsert->execute();
             
-            echo "<p class='success'>Successful addition of new user! <a href='exampleinsert.php'>Add another entry?</a></p>";
+            echo "<p class='success'>Successful addition of new user! <a href='login.php'>Return to Login page</a></p>";
             $showform = 0; //hide form
         }
         catch(PDOException $e)
         {
             echo 'Error inserting into database. <br />ERROR MESSAGE:<br />' .$e->getMessage();
-            include "_examplefooter.php";
+            include "_footer.php";
             exit();
         }
     }//no errors
@@ -210,20 +237,20 @@ if($showform ==1)
 							<h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
 						</div>
 						<div class="modal-body">	<!-- Modal body contains form for the login -->
-							<form role="form">
+							<form name="loginForm" id="loginForm" method="post" action="login.php">
 								<div class="form-group">	<!-- Code for the login -->
-									<label for="email"><span class="glyphicon glyphicon-user"></span> Username</label>
-									<input type="text" class="form-control" id="email" placeholder="Enter email">
+									<label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
+									<input type="text" name="email" class="form-control" id="email" placeholder="Enter email">
 								</div>
 								<div class="form-group">	<!-- Code for the signup -->
 									<label for="pwd"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-									<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+									<input type="password" name="pwd" class="form-control" id="pwd" placeholder="Enter password">
 								</div>
 								<div class="checkbox">	<!-- Remember me checkbox code -->
 									<label><input type="checkbox" value="" checked>Remember me</label>
 								</div>
 								<!--<a href="index.html" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</a> <!-- This is just a link to the index.html, the nextline contains the submit function --> 
-								<input type="submit" name ="loginButton" class="btn btn-success btn-block" value="Login">
+								<input type="submit" name="loginButton" class="btn btn-success btn-block" value="Login">
 							</form>
 						</div>
 						<div class="modal-footer">	<!-- Modal footer contains the close button -->
@@ -244,23 +271,23 @@ if($showform ==1)
 							<h4><span class="glyphicon glyphicon-lock"></span> Signup</h4>
 						</div>
 						<div class="modal-body">	<!-- Modal body contains content for the signup form -->
-							<form role="form">
+							<form name="signupForm" id="signupForm" method="post" action="login.php">
 							
 								<div class="form-group">	<!-- Form for lastname -->
 									<label for="name">Name</label>
-									<input type="text" class="form-control" id="name" placeholder="Enter name">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Enter name">
 								</div>				
 								<div class="form-group">	<!-- Form for email -->
 									<label for="email">Email</label>
-									<input type="email" class="form-control" id="email" placeholder="Enter email">
+									<input type="email" name="email" class="form-control" id="email" placeholder="Enter email">
 								</div>		
 								<div class="form-group">	<!-- Form for status -->
 									<label for="status">Parking Type</label>
-									<input type="text" class="form-control" id="status" placeholder="Resident / Commuter / UP Commuter / Veteran">
+									<input type="text" name="status" class="form-control" id="status" placeholder="Resident / Commuter / UP Commuter / Veteran">
 								</div>
 								<div class="form-group">	<!-- Form for password -->
 									<label for="pwd">Password</label>
-									<input type="password" class="form-control" id="pwd" placeholder="Enter password">
+									<input type="password" name="pwd" class="form-control" id="pwd" placeholder="Enter password">
 								</div>
 								<!-- Sumbit button for signup -->
 								<input type="submit" name="signupButton" class="btn btn-success btn-block" value="Signup">
